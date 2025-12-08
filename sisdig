@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi: Penyederhanaan Rangkaian Logika dengan Aljabar Boolean</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .author-box {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            font-size: 0.9em;
+            color: #4a4a4a;
+            transition: opacity 0.3s;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            position: fixed;
+            top: 0; /* Adjusted since main-title is removed */
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        nav ul li a:hover {
+            color: #5a67d8;
+            transform: scale(1.1);
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #667eea;
+            transition: all 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .study-info {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1000px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .study-info h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em; /* Diperbesar */
+            color: #4a4a4a;
+        }
+        .study-info p {
+            margin: 5px 0;
+            font-size: 1.2em;
+            color: #667eea;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px; /* Adjusted since study-info is now above */
+        }
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 40px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        section h2 {
+            color: #4a4a4a;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .equation {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        ul, ol {
+            font-size: 1.1em;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .diagram {
+            text-align: center;
+            margin: 40px 0;
+            font-style: italic;
+            color: #666;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            header {
+                padding: 10px;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .study-info {
+                padding: 15px;
+            }
+            .study-info h1 {
+                font-size: 2em; /* Adjust for mobile */
+            }
+            .author-box {
+                top: 10px;
+                left: 10px;
+                padding: 5px;
+                font-size: 0.8em;
+            }
+            iframe {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="author-box">
+        <p>Muhammad Raihan Fachri</p>
+        <p>253303611239</p>
+    </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#analisis">Analisis</a></li>
+                <li><a href="#langkah">Langkah</a></li>
+                <li><a href="#rangkaian">Rangkaian</a></li>
+                <li><a href="#tabel">Tabel</a></li>
+                <li><a href="#kesimpulan">Kesimpulan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="study-info">
+        <h1>Sistem Digital: Studi Kasus 4</h1>
+        <p>F = A·B' + A'·B + A·B</p>
+    </div>
+
+    <div class="container">
+        <section id="analisis">
+            <h2>Analisis Ekspresi</h2>
+            <p>Variabel: Input utama terdiri dari A dan B.</p>
+            <ul>
+                <li>Term Pertama: A ⋅ B' (A AND NOT B)</li>
+                <li>Term Kedua: A' ⋅ B (NOT A AND B)</li>
+                <li>Term Ketiga: A ⋅ B (A AND B)</li>
+            </ul>
+            <p>Operator Utama: + (OR) yang menghubungkan ketiga term tersebut.</p>
+            <p>Pola: Term pertama (A ⋅ B') dan term ketiga (A ⋅ B) memiliki faktor bersama A namun berbeda pada B vs B' (komplemen).</p>
+        </section>
+
+        <section id="langkah">
+            <h2>Langkah-Langkah Penyederhanaan</h2>
+            <p>Sederhanakan persamaan menggunakan Teorema Aljabar Boolean:</p>
+            <ol>
+                <li><strong>Ekspresi Awal:</strong> \( F = A \cdot B' + A' \cdot B + A \cdot B \).</li>
+                <li><strong>Faktorisasi (Huk Distributif):</strong> Kelompokkan term yang mengandung variabel A, yaitu \( A \cdot B' \) dan \( A \cdot B \), lalu faktorkan:<br>\( F = A(B' + B) + A' \cdot B \)</li>
+                <li><strong>Eliminasi Komplemen (Hukum Komplemen):</strong> Karena \( B' + B = 1 \), maka ekspresi menjadi:<br>\( F = A(1) + A' \cdot B \)</li>
+                <li><strong>Identitas:</strong> Sederhanakan \( A \cdot 1 \) menjadi A:<br>\( F = A + A' \cdot B \)</li>
+                <li><strong>Penyederhanaan Akhir (Hukum Adopsi/Redundansi):</strong> Berdasarkan aturan \( X + X'Y = X + Y \), maka \( A + A'B \) menjadi:<br>\( F = A + B \).</li>
+            </ol>
+        </section>
+
+        <section id="rangkaian">
+            <h2>Rangkaian Gerbang</h2>
+            <p>Berikut adalah simulator interaktif rangkaian sebelum penyederhanaan dari CircuitVerse:</p>
+            <iframe src="https://circuitverse.org/simulator/embed/tugas-sisdig-presen-92edabf1-d470-4a52-aec0-bac5137cf355" title="Simulator Rangkaian Sebelum Penyederhanaan"></iframe>
+            <p>Dan berikut adalah simulator interaktif rangkaian yang sudah disederhanakan:</p>
+            <iframe src="https://circuitverse.org/simulator/embed/tugas-sisdig-presen-2-0cbda408-570b-4151-82e7-2dedda82ef5f" title="Simulator Rangkaian Setelah Penyederhanaan"></iframe>
+            <p>Anda dapat mengklik tombol input A dan B di simulator untuk melihat output F berubah sesuai dengan fungsi \( F = A + B \).</p>
+        </section>
+
+        <section id="tabel">
+            <h2>Verifikasi Tabel Kebenaran</h2>
+            <p>Membuktikan bahwa hasil sebelum dan sesudah penyederhanaan adalah <strong>identik</strong>.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>\( AB' \)</th>
+                        <th>\( A'B \)</th>
+                        <th>\( AB \)</th>
+                        <th>Hasil (Sebelum)</th>
+                        <th>Hasil (A+B)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><strong>0</strong></td>
+                        <td><strong>0</strong></td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td><strong>1</strong></td>
+                        <td><strong>1</strong></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><strong>1</strong></td>
+                        <td><strong>1</strong></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td><strong>1</strong></td>
+                        <td><strong>1</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="kesimpulan">
+            <h2>Kesimpulan & Manfaat</h2>
+            <p>Hasil Akhir: Ekspresi berhasil disederhanakan menjadi \( F = A + B \).</p>
+            <p>Efisiensi: Penggunaan gerbang berkurang drastis, meningkatkan efisiensi rangkaian secara signifikan.</p>
+            <p>Manfaat: Pengurangan komponen menurunkan biaya produksi, mempercepat respon rangkaian, dan menekan konsumsi daya listrik.</p>
+        </section>
+    </div>
+
+    <script>
+        // Intersection Observer untuk animasi saat scroll
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Script untuk menyembunyikan author-box saat scroll ke bawah
+        window.addEventListener('scroll', function() {
+            const authorBox = document.querySelector('.author-box');
+            if (window.scrollY > 100) { // Menghilang setelah scroll 100px
+                authorBox.style.opacity = '0';
+                setTimeout(() => {
+                    authorBox.style.display = 'none';
+                }, 300); // Delay untuk transisi
+            } else {
+                authorBox.style.display = 'block';
+                authorBox.style.opacity = '1';
+            }
+        });
+
+        // Script untuk smooth scroll ke section dengan offset header
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const offsetTop = targetElement.offsetTop - headerHeight - 20; // Offset tambahan 20px
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
