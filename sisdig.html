@@ -1,355 +1,496 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presentasi: Penyederhanaan Rangkaian Logika dengan Aljabar Boolean</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: #333;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-        .author-box {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 10px;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1001;
-            font-size: 0.9em;
-            color: #4a4a4a;
-            transition: opacity 0.3s;
-        }
-        header {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            position: fixed;
-            top: 0; /* Adjusted since main-title is removed */
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 0;
-        }
-        nav ul li a:hover {
-            color: #5a67d8;
-            transform: scale(1.1);
-        }
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background-color: #667eea;
-            transition: all 0.3s ease;
-        }
-        nav ul li a:hover::after {
-            width: 100%;
-            left: 0;
-        }
-        .study-info {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 1000px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .study-info h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5em; /* Diperbesar */
-            color: #4a4a4a;
-        }
-        .study-info p {
-            margin: 5px 0;
-            font-size: 1.2em;
-            color: #667eea;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px; /* Adjusted since study-info is now above */
-        }
-        section {
-            background: rgba(255, 255, 255, 0.95);
-            margin: 40px 0;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-        section.visible {
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Presentasi Flip Flop - Desain Minimalis Elegan</title>
+<style>
+    /* Reset dan dasar */
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fefefe;
+        color: #222;
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        max-width: 900px;
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        line-height: 1.5;
+        overflow: hidden;
+        margin-bottom: 60px;
+    }
+
+    /* Animasi fade-in dengan delay */
+    .fade-in {
+        opacity: 0;
+        animation: fadeInAnimation 0.8s forwards;
+    }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1s; }
+    .delay-6 { animation-delay: 1.2s; }
+    .delay-7 { animation-delay: 1.4s; }
+    .delay-8 { animation-delay: 1.6s; }
+    .delay-9 { animation-delay: 1.8s; }
+
+    @keyframes fadeInAnimation {
+        to {
             opacity: 1;
-            transform: translateY(0);
         }
-        section h2 {
-            color: #4a4a4a;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: #5a4e8c;
+        border-bottom: 3px solid #7b6fb0;
+        padding-bottom: 12px;
+    }
+
+    p.subtitle {
+        text-align: center;
+        font-weight: 600;
+        color: #6b5b95;
+        margin-top: 0;
+        margin-bottom: 6px;
+        font-size: 1.1rem;
+    }
+
+    p.nim {
+        text-align: center;
+        font-weight: 500;
+        color: #8378c1;
+        margin-top: 0;
+        margin-bottom: 32px;
+        font-size: 1rem;
+        font-style: italic;
+    }
+
+    h2 {
+        color: #5a4e8c;
+        margin-top: 40px;
+        margin-bottom: 16px;
+        font-weight: 700;
+        font-size: 1.6rem;
+        border-bottom: 2px solid #b3a7d5;
+        padding-bottom: 8px;
+    }
+
+    h3 {
+        color: #6b5b95;
+        margin-top: 24px;
+        margin-bottom: 12px;
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+        color: #444;
+        font-size: 1rem;
+    }
+
+    ul ul {
+        list-style-type: circle;
+    }
+
+    li {
+        margin-bottom: 8px;
+    }
+
+    strong {
+        color: #8c6bc4;
+    }
+
+    /* Tabel */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 24px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        border-radius: 10px;
+        overflow: hidden;
+        font-size: 1rem;
+    }
+
+    caption {
+        padding: 12px;
+        font-weight: 700;
+        font-size: 1.2rem;
+        text-align: left;
+        color: #5a4e8c;
+        background-color: #ede9f5;
+        border-bottom: 2px solid #b3a7d5;
+    }
+
+    thead tr {
+        background-color: #b3a7d5;
+        color: #3b2f66;
+        text-align: center;
+    }
+
+    th, td {
+        padding: 14px 12px;
+        border: 1px solid #d0cde3;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f7f6fb;
+    }
+
+    tbody td {
+        text-align: center;
+        color: #555;
+    }
+
+    /* Proses cell coloring */
+    tbody td:nth-child(6) {
+        text-transform: capitalize;
+        font-weight: 600;
+        color: #bf5af2;
+    }
+
+    /* Text highlight */
+    .conclusion {
+        margin-top: 28px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-align: center;
+        color: #7a52f0;
+        white-space: pre-line;
+    }
+
+    /* Output akhir hijau muda dan tebal */
+    .output-final {
+        font-weight: 700;
+        color: #7CFC00; /* hijau muda */
+    }
+
+    .footer {
+        margin-top: 50px;
+        text-align: center;
+        color: #9a8dbf;
+        font-style: italic;
+        letter-spacing: 0.05em;
+    }
+
+    a {
+        color: #7a52f0;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Embed simulasi */
+    .sim-container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .sim-box {
+        flex: 1 1 400px;
+        max-width: 450px;
+        min-width: 300px;
+        text-align: center;
+    }
+
+    .sim-box h3 {
+        color: #5a4e8c;
+        margin-bottom: 8px;
+    }
+
+    /* Thank You Stickman Animation */
+    .thankyou-section {
+        width: 100%;
+        max-width: 500px;
+        text-align: center;
+        margin-bottom: 40px;
+        user-select: none;
+    }
+
+    .thankyou-section h1 {
+        font-size: 3rem;
+        color: #5a4e8c;
+        margin-bottom: 40px;
+    }
+
+    .stickman-container {
+        width: 150px;
+        height: 250px;
+        position: relative;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+
+    svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    .head {
+        fill: none;
+        stroke: black;
+        stroke-width: 4;
+        r: 20;
+        cx: 75;
+        cy: 40;
+    }
+    .body, .arm-left, .arm-right, .leg-left, .leg-right {
+        stroke: black;
+        stroke-width: 4;
+        stroke-linecap: round;
+        fill: none;
+    }
+
+    .stickman {
+        transform-origin: 75px 180px;
+        animation: bounce 0.7s ease forwards;
+    }
+
+    .explode-circle {
+        fill: #7CFC00;
+        opacity: 0;
+        transform-origin: 75px 100px;
+        animation: explode 0.7s forwards;
+    }
+
+    /* Keyframes for stickman bounce & explosion */
+    @keyframes bounce {
+        0% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-40px) scale(1.1); }
+        100% { transform: translateY(0) scale(1); }
+    }
+    @keyframes explode {
+        0% {
+          r: 0;
+          opacity: 1;
+          transform: scale(1);
         }
-        .equation {
-            font-size: 1.5em;
-            text-align: center;
-            margin: 20px 0;
-            font-weight: bold;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
+        100% {
+          r: 80;
+          opacity: 0;
+          transform: scale(1.7);
         }
-        ul, ol {
-            font-size: 1.1em;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 1em;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-        .diagram {
-            text-align: center;
-            margin: 40px 0;
-            font-style: italic;
-            color: #666;
-        }
-        iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        @media (max-width: 768px) {
-            header {
-                padding: 10px;
-            }
-            nav ul li {
-                margin: 0 10px;
-            }
-            .study-info {
-                padding: 15px;
-            }
-            .study-info h1 {
-                font-size: 2em; /* Adjust for mobile */
-            }
-            .author-box {
-                top: 10px;
-                left: 10px;
-                padding: 5px;
-                font-size: 0.8em;
-            }
-            iframe {
-                height: 400px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="author-box">
-        <p>Muhammad Raihan Fachri</p>
-        <p>253303611239</p>
+
+  <div class="container">
+    <h1 class="fade-in delay-1">Rangkaian Sekuensial: Flip Flop</h1>
+    <p class="subtitle fade-in delay-2">Muhammad Raihan Fachri           | Studi Kasus 4</p>
+    <p class="nim fade-in delay-3">253303611239</p>
+
+    
+    <h2 class="fade-in delay-5">Langkah 1 : Memahami Cara Kerja Flip Flop</h2>
+    <ul class="fade-in delay-6">
+      <li><strong>JK Flip Flop:</strong>
+        <ul>
+          <li>J=1, K=0 → Set (Q=1)</li>
+          <li>J=0, K=1 → Reset (Q=0)</li>
+          <li>J=K=0 → Hold</li>
+        </ul>
+      </li>
+      <li><strong>D Flip Flop:</strong> Output selalu mengikuti input D saat clock aktif.</li>
+      <li><strong>Konversi JK ke D Flip Flop:</strong> J=D, K=0
+        <ul>
+          <li>Jika D=1 → J=1, K=0</li>
+          <li>Jika D=0 → J=0, K=1</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2 class="fade-in delay-7">Langkah 2 : Analisis Setiap Clock Pulse Secara Berurutan</h2>
+    <ul class="fade-in delay-1">
+      <li><strong>Clock 1:</strong> D=1 → J=1, K=0 (SET)
+        <ul>
+          <li>Q(t) = 0 (kondisi awal)</li>
+          <li>Q akan di-SET menjadi 1</li>
+          <li>Q(1) = 1</li>
+        </ul>
+      </li>
+      <li><strong>Clock 2:</strong> D=0 → J=0, K=1 (RESET)
+        <ul>
+          <li>Q(t) = 1 (hasil dari clock 1)</li>
+          <li>Q akan di-RESET menjadi 0</li>
+          <li>Q(2) = 0</li>
+        </ul>
+      </li>
+      <li><strong>Clock 3:</strong> D=1 → J=1, K=0 (SET)
+        <ul>
+          <li>Q(t) = 0 (hasil dari clock 2)</li>
+          <li>Q akan di-SET menjadi 1</li>
+          <li>Q(3) = 1</li>
+        </ul>
+      </li>
+      <li><strong>Clock 4:</strong> D=1 → J=1, K=0 (SET)
+        <ul>
+          <li>Q(t) = 1 (hasil dari clock 3)</li>
+          <li>Q tetap bernilai 1</li>
+          <li>Q(4) = 1</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2 class="fade-in delay-2">Langkah 3 : TABEL HASIL TRACKING</h2>
+    <table class="fade-in delay-3">
+      <caption>TABEL HASIL TRACKING</caption>
+      <thead>
+        <tr>
+          <th>CLOCK</th>
+          <th>D</th>
+          <th>J=D</th>
+          <th>K=D'</th>
+          <th>Q(T)SEBELUM</th>
+          <th>PROSES</th>
+          <th>Q(T+1)SESUDAH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>awal</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>0</td>
+          <td>kondisi awal</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>set</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>reset</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>set</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>set</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="fade-in delay-5">Langkah 4 : Kesimpulan</h2>
+    <p class="fade-in delay-6">
+      <strong>HASIL AKHIR:</strong><br>
+      Setelah Clock 1: Q = 1<br>
+      Setelah Clock 2: Q = 0<br>
+      Setelah Clock 3: Q = 1<br>
+      Setelah Clock 4: Q = 1 (tetap)<br>
+      <span class="output-final">Output akhir Q = 1</span>
+    </p>
+
+    <h2 class="fade-in delay-7">Gambar Rangkaian Gerbang</h2>
+
+    <p>Berikut adalah simulasi rangkaian:</p>
+
+    <div class="sim-container fade-in delay-8">
+
+      <div class="sim-box">
+        <h3>JK Flip Flop</h3>
+        <iframe 
+          src="https://circuitverse.org/simulator/embed/jk-flipflop-9c241f5b-cc0d-4414-b4bb-22213e81281b" 
+          width="100%" height="300" frameborder="0" allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="sim-box">
+        <h3>D Flip Flop</h3>
+        <iframe 
+          src="https://circuitverse.org/simulator/embed/flipflop-6528ea32-e3f4-4112-ba12-335f92a7bfdb" 
+          width="100%" height="300" frameborder="0" allowfullscreen>
+        </iframe>
+      </div>
+
     </div>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#analisis">Analisis</a></li>
-                <li><a href="#langkah">Langkah</a></li>
-                <li><a href="#rangkaian">Rangkaian</a></li>
-                <li><a href="#tabel">Tabel</a></li>
-                <li><a href="#kesimpulan">Kesimpulan</a></li>
-            </ul>
-        </nav>
-    </header>
+  </div>
 
-    <div class="study-info">
-        <h1>Sistem Digital: Studi Kasus 4</h1>
-        <p>F = A·B' + A'·B + A·B</p>
+  <!-- Thank You Section with Stickman Boom Animation -->
+  <section class="thankyou-section">
+    <h1>Thank You!</h1>
+    <div class="stickman-container" title="Click me!">
+      <svg viewBox="0 0 150 200" class="svg-stickman" xmlns="http://www.w3.org/2000/svg" >
+        <!-- Head -->
+        <circle class="head" cx="75" cy="40" r="20" />
+        <!-- Body -->
+        <line class="body" x1="75" y1="60" x2="75" y2="120" />
+        <!-- Arms -->
+        <line class="arm-left" x1="75" y1="80" x2="40" y2="110" />
+        <line class="arm-right" x1="75" y1="80" x2="110" y2="110" />
+        <!-- Legs -->
+        <line class="leg-left" x1="75" y1="120" x2="45" y2="180" />
+        <line class="leg-right" x1="75" y1="120" x2="105" y2="180" />
+        
+        <!-- Explosion circle -->
+        <circle class="explode-circle" cx="75" cy="100" r="0" />
+      </svg>
     </div>
+  </section>
 
-    <div class="container">
-        <section id="analisis">
-            <h2>Analisis Ekspresi</h2>
-            <p>Variabel: Input utama terdiri dari A dan B.</p>
-            <ul>
-                <li>Term Pertama: A ⋅ B' (A AND NOT B)</li>
-                <li>Term Kedua: A' ⋅ B (NOT A AND B)</li>
-                <li>Term Ketiga: A ⋅ B (A AND B)</li>
-            </ul>
-            <p>Operator Utama: + (OR) yang menghubungkan ketiga term tersebut.</p>
-            <p>Pola: Term pertama (A ⋅ B') dan term ketiga (A ⋅ B) memiliki faktor bersama A namun berbeda pada B vs B' (komplemen).</p>
-        </section>
+<script>
+  // Animate boom on click
+  const stickmanContainer = document.querySelector('.stickman-container');
+  const stickmanSvg = stickmanContainer.querySelector('svg');
+  const explodeCircle = stickmanContainer.querySelector('.explode-circle');
 
-        <section id="langkah">
-            <h2>Langkah-Langkah Penyederhanaan</h2>
-            <p>Sederhanakan persamaan menggunakan Teorema Aljabar Boolean:</p>
-            <ol>
-                <li><strong>Ekspresi Awal:</strong> \( F = A \cdot B' + A' \cdot B + A \cdot B \).</li>
-                <li><strong>Faktorisasi (Huk Distributif):</strong> Kelompokkan term yang mengandung variabel A, yaitu \( A \cdot B' \) dan \( A \cdot B \), lalu faktorkan:<br>\( F = A(B' + B) + A' \cdot B \)</li>
-                <li><strong>Eliminasi Komplemen (Hukum Komplemen):</strong> Karena \( B' + B = 1 \), maka ekspresi menjadi:<br>\( F = A(1) + A' \cdot B \)</li>
-                <li><strong>Identitas:</strong> Sederhanakan \( A \cdot 1 \) menjadi A:<br>\( F = A + A' \cdot B \)</li>
-                <li><strong>Penyederhanaan Akhir (Hukum Adopsi/Redundansi):</strong> Berdasarkan aturan \( X + X'Y = X + Y \), maka \( A + A'B \) menjadi:<br>\( F = A + B \).</li>
-            </ol>
-        </section>
+  stickmanContainer.addEventListener('click', () => {
+    // Bounce animation
+    stickmanSvg.classList.remove('bounce');
+    void stickmanSvg.offsetWidth; // trigger reflow
+    stickmanSvg.classList.add('stickman', 'bounce');
 
-        <section id="rangkaian">
-            <h2>Rangkaian Gerbang</h2>
-            <p>Berikut adalah simulator interaktif rangkaian sebelum penyederhanaan dari CircuitVerse:</p>
-            <iframe src="https://circuitverse.org/simulator/embed/tugas-sisdig-presen-92edabf1-d470-4a52-aec0-bac5137cf355" title="Simulator Rangkaian Sebelum Penyederhanaan"></iframe>
-            <p>Dan berikut adalah simulator interaktif rangkaian yang sudah disederhanakan:</p>
-            <iframe src="https://circuitverse.org/simulator/embed/tugas-sisdig-presen-2-0cbda408-570b-4151-82e7-2dedda82ef5f" title="Simulator Rangkaian Setelah Penyederhanaan"></iframe>
-            <p>Anda dapat mengklik tombol input A dan B di simulator untuk melihat output F berubah sesuai dengan fungsi \( F = A + B \).</p>
-        </section>
+    // Explosion animation
+    explodeCircle.style.animation = 'none';
+    explodeCircle.offsetHeight; // trigger reflow
+    explodeCircle.style.animation = 'explode 0.7s forwards';
+  });
+</script>
 
-        <section id="tabel">
-            <h2>Verifikasi Tabel Kebenaran</h2>
-            <p>Membuktikan bahwa hasil sebelum dan sesudah penyederhanaan adalah <strong>identik</strong>.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>A</th>
-                        <th>B</th>
-                        <th>\( AB' \)</th>
-                        <th>\( A'B \)</th>
-                        <th>\( AB \)</th>
-                        <th>Hasil (Sebelum)</th>
-                        <th>Hasil (A+B)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td><strong>0</strong></td>
-                        <td><strong>0</strong></td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td><strong>1</strong></td>
-                        <td><strong>1</strong></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td><strong>1</strong></td>
-                        <td><strong>1</strong></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>1</td>
-                        <td><strong>1</strong></td>
-                        <td><strong>1</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="kesimpulan">
-            <h2>Kesimpulan & Manfaat</h2>
-            <p>Hasil Akhir: Ekspresi berhasil disederhanakan menjadi \( F = A + B \).</p>
-            <p>Efisiensi: Penggunaan gerbang berkurang drastis, meningkatkan efisiensi rangkaian secara signifikan.</p>
-            <p>Manfaat: Pengurangan komponen menurunkan biaya produksi, mempercepat respon rangkaian, dan menekan konsumsi daya listrik.</p>
-        </section>
-    </div>
-
-    <script>
-        // Intersection Observer untuk animasi saat scroll
-        const sections = document.querySelectorAll('section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => observer.observe(section));
-
-        // Script untuk menyembunyikan author-box saat scroll ke bawah
-        window.addEventListener('scroll', function() {
-            const authorBox = document.querySelector('.author-box');
-            if (window.scrollY > 100) { // Menghilang setelah scroll 100px
-                authorBox.style.opacity = '0';
-                setTimeout(() => {
-                    authorBox.style.display = 'none';
-                }, 300); // Delay untuk transisi
-            } else {
-                authorBox.style.display = 'block';
-                authorBox.style.opacity = '1';
-            }
-        });
-
-        // Script untuk smooth scroll ke section dengan offset header
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const offsetTop = targetElement.offsetTop - headerHeight - 20; // Offset tambahan 20px
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
