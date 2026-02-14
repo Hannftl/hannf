@@ -1,496 +1,316 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Presentasi Flip Flop - Desain Minimalis Elegan</title>
-<style>
-    /* Reset dan dasar */
-    * {
-        box-sizing: border-box;
-    }
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #fefefe;
-        color: #222;
-        margin: 0;
-        padding: 40px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .container {
-        max-width: 900px;
-        background: #fff;
-        padding: 30px 40px;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-        line-height: 1.5;
-        overflow: hidden;
-        margin-bottom: 60px;
-    }
-
-    /* Animasi fade-in dengan delay */
-    .fade-in {
-        opacity: 0;
-        animation: fadeInAnimation 0.8s forwards;
-    }
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-    .delay-4 { animation-delay: 0.8s; }
-    .delay-5 { animation-delay: 1s; }
-    .delay-6 { animation-delay: 1.2s; }
-    .delay-7 { animation-delay: 1.4s; }
-    .delay-8 { animation-delay: 1.6s; }
-    .delay-9 { animation-delay: 1.8s; }
-
-    @keyframes fadeInAnimation {
-        to {
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Valentine's Day - Aesthetic Romance</title>
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(45deg, #ffe4e1, #ffb6c1, #ff69b4, #ff1493);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            text-align: center;
+            padding: 50px;
+            color: #8b0000;
+            overflow: hidden;
+            margin: 0;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h1 {
+            font-size: 3.5em;
+            color: #ff1493;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        p {
+            font-size: 1.5em;
+            margin: 20px;
+            line-height: 1.6;
+            animation: slideUp 3s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .heart {
+            font-size: 6em;
+            animation: heartbeat 1.5s infinite, float 3s ease-in-out infinite;
+            cursor: pointer;
+            margin: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
+            75% { transform: scale(1.1); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .click-hint {
+            font-size: 1.2em;
+            color: #ff1493;
+            margin: 10px 0;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.5; }
+        }
+        .arrow {
+            font-size: 2em;
+            color: #ff1493;
+            animation: bounce 1s infinite;
+            display: inline-block;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .slideshow {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255,20,147,0.6);
+            display: none; 
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slide.active {
             opacity: 1;
         }
-    }
-
-    h1 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        color: #5a4e8c;
-        border-bottom: 3px solid #7b6fb0;
-        padding-bottom: 12px;
-    }
-
-    p.subtitle {
-        text-align: center;
-        font-weight: 600;
-        color: #6b5b95;
-        margin-top: 0;
-        margin-bottom: 6px;
-        font-size: 1.1rem;
-    }
-
-    p.nim {
-        text-align: center;
-        font-weight: 500;
-        color: #8378c1;
-        margin-top: 0;
-        margin-bottom: 32px;
-        font-size: 1rem;
-        font-style: italic;
-    }
-
-    h2 {
-        color: #5a4e8c;
-        margin-top: 40px;
-        margin-bottom: 16px;
-        font-weight: 700;
-        font-size: 1.6rem;
-        border-bottom: 2px solid #b3a7d5;
-        padding-bottom: 8px;
-    }
-
-    h3 {
-        color: #6b5b95;
-        margin-top: 24px;
-        margin-bottom: 12px;
-        font-weight: 600;
-        font-size: 1.3rem;
-    }
-
-    ul {
-        margin-left: 20px;
-        margin-bottom: 20px;
-        color: #444;
-        font-size: 1rem;
-    }
-
-    ul ul {
-        list-style-type: circle;
-    }
-
-    li {
-        margin-bottom: 8px;
-    }
-
-    strong {
-        color: #8c6bc4;
-    }
-
-    /* Tabel */
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        margin-top: 24px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        border-radius: 10px;
-        overflow: hidden;
-        font-size: 1rem;
-    }
-
-    caption {
-        padding: 12px;
-        font-weight: 700;
-        font-size: 1.2rem;
-        text-align: left;
-        color: #5a4e8c;
-        background-color: #ede9f5;
-        border-bottom: 2px solid #b3a7d5;
-    }
-
-    thead tr {
-        background-color: #b3a7d5;
-        color: #3b2f66;
-        text-align: center;
-    }
-
-    th, td {
-        padding: 14px 12px;
-        border: 1px solid #d0cde3;
-    }
-
-    tbody tr:nth-child(even) {
-        background-color: #f7f6fb;
-    }
-
-    tbody td {
-        text-align: center;
-        color: #555;
-    }
-
-    /* Proses cell coloring */
-    tbody td:nth-child(6) {
-        text-transform: capitalize;
-        font-weight: 600;
-        color: #bf5af2;
-    }
-
-    /* Text highlight */
-    .conclusion {
-        margin-top: 28px;
-        font-size: 1.2rem;
-        font-weight: 700;
-        text-align: center;
-        color: #7a52f0;
-        white-space: pre-line;
-    }
-
-    /* Output akhir hijau muda dan tebal */
-    .output-final {
-        font-weight: 700;
-        color: #7CFC00; /* hijau muda */
-    }
-
-    .footer {
-        margin-top: 50px;
-        text-align: center;
-        color: #9a8dbf;
-        font-style: italic;
-        letter-spacing: 0.05em;
-    }
-
-    a {
-        color: #7a52f0;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    /* Embed simulasi */
-    .sim-container {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 20px;
-    }
-
-    .sim-box {
-        flex: 1 1 400px;
-        max-width: 450px;
-        min-width: 300px;
-        text-align: center;
-    }
-
-    .sim-box h3 {
-        color: #5a4e8c;
-        margin-bottom: 8px;
-    }
-
-    /* Thank You Stickman Animation */
-    .thankyou-section {
-        width: 100%;
-        max-width: 500px;
-        text-align: center;
-        margin-bottom: 40px;
-        user-select: none;
-    }
-
-    .thankyou-section h1 {
-        font-size: 3rem;
-        color: #5a4e8c;
-        margin-bottom: 40px;
-    }
-
-    .stickman-container {
-        width: 150px;
-        height: 250px;
-        position: relative;
-        margin: 0 auto;
-        cursor: pointer;
-    }
-
-    svg {
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-    }
-
-    .head {
-        fill: none;
-        stroke: black;
-        stroke-width: 4;
-        r: 20;
-        cx: 75;
-        cy: 40;
-    }
-    .body, .arm-left, .arm-right, .leg-left, .leg-right {
-        stroke: black;
-        stroke-width: 4;
-        stroke-linecap: round;
-        fill: none;
-    }
-
-    .stickman {
-        transform-origin: 75px 180px;
-        animation: bounce 0.7s ease forwards;
-    }
-
-    .explode-circle {
-        fill: #7CFC00;
-        opacity: 0;
-        transform-origin: 75px 100px;
-        animation: explode 0.7s forwards;
-    }
-
-    /* Keyframes for stickman bounce & explosion */
-    @keyframes bounce {
-        0% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-40px) scale(1.1); }
-        100% { transform: translateY(0) scale(1); }
-    }
-    @keyframes explode {
-        0% {
-          r: 0;
-          opacity: 1;
-          transform: scale(1);
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
-        100% {
-          r: 80;
-          opacity: 0;
-          transform: scale(1.7);
+        .message {
+            background: rgba(255,255,255,0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            max-width: 700px;
+            margin: 20px auto;
+            animation: glow 2s ease-in-out infinite alternate;
         }
-    }
-</style>
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(255,20,147,0.3); }
+            to { box-shadow: 0 0 30px rgba(255,20,147,0.6); }
+        }
+        .flowers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .flower {
+            position: absolute;
+            font-size: 2.5em;
+            animation: fall 15s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            font-size: 1.5em;
+            animation: particleFloat 10s linear infinite;
+            opacity: 0;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+        .love-animation {
+            position: absolute;
+            font-size: 3em;
+            color: #ff1493;
+            animation: loveBurst 2s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes loveBurst {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 0.8; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        .overlay img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255,20,147,0.8);
+            transition: transform 0.3s ease;
+        }
+        .overlay img:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1 class="fade-in delay-1">Rangkaian Sekuensial: Flip Flop</h1>
-    <p class="subtitle fade-in delay-2">Muhammad Raihan Fachri           | Studi Kasus 4</p>
-    <p class="nim fade-in delay-3">253303611239</p>
-
-    
-    <h2 class="fade-in delay-5">Langkah 1 : Memahami Cara Kerja Flip Flop</h2>
-    <ul class="fade-in delay-6">
-      <li><strong>JK Flip Flop:</strong>
-        <ul>
-          <li>J=1, K=0 → Set (Q=1)</li>
-          <li>J=0, K=1 → Reset (Q=0)</li>
-          <li>J=K=0 → Hold</li>
-        </ul>
-      </li>
-      <li><strong>D Flip Flop:</strong> Output selalu mengikuti input D saat clock aktif.</li>
-      <li><strong>Konversi JK ke D Flip Flop:</strong> J=D, K=0
-        <ul>
-          <li>Jika D=1 → J=1, K=0</li>
-          <li>Jika D=0 → J=0, K=1</li>
-        </ul>
-      </li>
-    </ul>
-
-    <h2 class="fade-in delay-7">Langkah 2 : Analisis Setiap Clock Pulse Secara Berurutan</h2>
-    <ul class="fade-in delay-1">
-      <li><strong>Clock 1:</strong> D=1 → J=1, K=0 (SET)
-        <ul>
-          <li>Q(t) = 0 (kondisi awal)</li>
-          <li>Q akan di-SET menjadi 1</li>
-          <li>Q(1) = 1</li>
-        </ul>
-      </li>
-      <li><strong>Clock 2:</strong> D=0 → J=0, K=1 (RESET)
-        <ul>
-          <li>Q(t) = 1 (hasil dari clock 1)</li>
-          <li>Q akan di-RESET menjadi 0</li>
-          <li>Q(2) = 0</li>
-        </ul>
-      </li>
-      <li><strong>Clock 3:</strong> D=1 → J=1, K=0 (SET)
-        <ul>
-          <li>Q(t) = 0 (hasil dari clock 2)</li>
-          <li>Q akan di-SET menjadi 1</li>
-          <li>Q(3) = 1</li>
-        </ul>
-      </li>
-      <li><strong>Clock 4:</strong> D=1 → J=1, K=0 (SET)
-        <ul>
-          <li>Q(t) = 1 (hasil dari clock 3)</li>
-          <li>Q tetap bernilai 1</li>
-          <li>Q(4) = 1</li>
-        </ul>
-      </li>
-    </ul>
-
-    <h2 class="fade-in delay-2">Langkah 3 : TABEL HASIL TRACKING</h2>
-    <table class="fade-in delay-3">
-      <caption>TABEL HASIL TRACKING</caption>
-      <thead>
-        <tr>
-          <th>CLOCK</th>
-          <th>D</th>
-          <th>J=D</th>
-          <th>K=D'</th>
-          <th>Q(T)SEBELUM</th>
-          <th>PROSES</th>
-          <th>Q(T+1)SESUDAH</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>awal</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>0</td>
-          <td>kondisi awal</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-          <td>set</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>0</td>
-          <td>0</td>
-          <td>1</td>
-          <td>1</td>
-          <td>reset</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-          <td>set</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>1</td>
-          <td>set</td>
-          <td>1</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2 class="fade-in delay-5">Langkah 4 : Kesimpulan</h2>
-    <p class="fade-in delay-6">
-      <strong>HASIL AKHIR:</strong><br>
-      Setelah Clock 1: Q = 1<br>
-      Setelah Clock 2: Q = 0<br>
-      Setelah Clock 3: Q = 1<br>
-      Setelah Clock 4: Q = 1 (tetap)<br>
-      <span class="output-final">Output akhir Q = 1</span>
-    </p>
-
-    <h2 class="fade-in delay-7">Gambar Rangkaian Gerbang</h2>
-
-    <p>Berikut adalah simulasi rangkaian:</p>
-
-    <div class="sim-container fade-in delay-8">
-
-      <div class="sim-box">
-        <h3>JK Flip Flop</h3>
-        <iframe 
-          src="https://circuitverse.org/simulator/embed/jk-flipflop-9c241f5b-cc0d-4414-b4bb-22213e81281b" 
-          width="100%" height="300" frameborder="0" allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="sim-box">
-        <h3>D Flip Flop</h3>
-        <iframe 
-          src="https://circuitverse.org/simulator/embed/flipflop-6528ea32-e3f4-4112-ba12-335f92a7bfdb" 
-          width="100%" height="300" frameborder="0" allowfullscreen>
-        </iframe>
-      </div>
-
+    <div class="flowers">
+        <div class="flower" style="left: 5%; animation-delay: 0s;">🌸</div>
+        <div class="flower" style="left: 15%; animation-delay: 1s;">🌹</div>
+        <div class="flower" style="left: 25%; animation-delay: 2s;">💐</div>
+        <div class="flower" style="left: 35%; animation-delay: 3s;">🌷</div>
+        <div class="flower" style="left: 45%; animation-delay: 4s;">🌺</div>
+        <div class="flower" style="left: 55%; animation-delay: 5s;">🌻</div>
+        <div class="flower" style="left: 65%; animation-delay: 6s;">🌼</div>
+        <div class="flower" style="left: 75%; animation-delay: 7s;">🌹</div>
+        <div class="flower" style="left: 85%; animation-delay: 8s;">💖</div>
+        <div class="flower" style="left: 95%; animation-delay: 9s;">🌸</div>
     </div>
-  </div>
 
-  <!-- Thank You Section with Stickman Boom Animation -->
-  <section class="thankyou-section">
-    <h1>Thank You!</h1>
-    <div class="stickman-container" title="Click me!">
-      <svg viewBox="0 0 150 200" class="svg-stickman" xmlns="http://www.w3.org/2000/svg" >
-        <!-- Head -->
-        <circle class="head" cx="75" cy="40" r="20" />
-        <!-- Body -->
-        <line class="body" x1="75" y1="60" x2="75" y2="120" />
-        <!-- Arms -->
-        <line class="arm-left" x1="75" y1="80" x2="40" y2="110" />
-        <line class="arm-right" x1="75" y1="80" x2="110" y2="110" />
-        <!-- Legs -->
-        <line class="leg-left" x1="75" y1="120" x2="45" y2="180" />
-        <line class="leg-right" x1="75" y1="120" x2="105" y2="180" />
-        
-        <!-- Explosion circle -->
-        <circle class="explode-circle" cx="75" cy="100" r="0" />
-      </svg>
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;">💕</div>
+        <div class="particle" style="left: 20%; animation-delay: 1s;">❤️</div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;">💖</div>
+        <div class="particle" style="left: 40%; animation-delay: 3s;">💗</div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;">💓</div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;">💕</div>
+        <div class="particle" style="left: 70%; animation-delay: 6s;">❤️</div>
+        <div class="particle" style="left: 80%; animation-delay: 7s;">💖</div>
+        <div class="particle" style="left: 90%; animation-delay: 8s;">💗</div>
     </div>
-  </section>
 
-<script>
-  // Animate boom on click
-  const stickmanContainer = document.querySelector('.stickman-container');
-  const stickmanSvg = stickmanContainer.querySelector('svg');
-  const explodeCircle = stickmanContainer.querySelector('.explode-circle');
+    <h1>Happy Valentine's Day, My Love!</h1>
 
-  stickmanContainer.addEventListener('click', () => {
-    // Bounce animation
-    stickmanSvg.classList.remove('bounce');
-    void stickmanSvg.offsetWidth; // trigger reflow
-    stickmanSvg.classList.add('stickman', 'bounce');
+    <div class="message">
+        <p>I may not be the first you loved, the first who made your heart race, or the first who made you believe in love, but I want to be the one who stays when everything else fades.</p>
+        <p>The one who proves that love can still be gentle, true, and lasting. I may not be your first, but I want to be your forever. ❤️</p>
+    </div>
 
-    // Explosion animation
-    explodeCircle.style.animation = 'none';
-    explodeCircle.offsetHeight; // trigger reflow
-    explodeCircle.style.animation = 'explode 0.7s forwards';
-  });
-</script>
+    <div class="heart" onclick="nextSlideAndShowImg()">💖</div>
+    <p class="click-hint">Klik<span class="arrow">⬆️</span></p>
 
+    <div class="slideshow" id="gallery">
+        <div class="slide active"><img src="https://via.placeholder.com/300x300/ff69b4/ffffff?text=Pretty+Girl+1" alt="1" /></div>
+        <div class="slide"><img src="https://via.placeholder.com/300x300/ffb6c1/ffffff?text=Pretty+Girl+2" alt="2" /></div>
+        <div class="slide"><img src="https://via.placeholder.com/300x300/ffe4e1/ffffff?text=Pretty+Girl+3" alt="3" /></div>
+        <div class="slide"><img src="https://via.placeholder.com/300x300/ff1493/ffffff?text=Pretty+Girl+4" alt="4" /></div>
+        <div class="slide"><img src="https://via.placeholder.com/300x300/dc143c/ffffff?text=Pretty+Girl+5" alt="5" /></div>
+    </div>
+
+    <audio id="valentineAudio" autoplay loop>
+        <source src="ssstik.io_1771038444968.mp3" type="audio/mpeg" />
+        Browser tidak mendukung audio.
+    </audio>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const gallery = document.getElementById('gallery');
+        const audio = document.getElementById('valentineAudio');
+
+        // Fungsi utama saat klik hati
+        function nextSlideAndShowImg() {
+            // Putar audio jika belum berputar (interaksi user)
+            if (audio.paused) {
+                audio.play();
+            }
+
+            // Tampilkan slideshow galeri
+            if (gallery.style.display === 'none' || gallery.style.display === '') {
+                gallery.style.display = 'block';
+            }
+
+            // Ganti slide
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+
+            // Efek ledakan cinta
+            for (let i = 0; i < 10; i++) {
+                const love = document.createElement('div');
+                love.className = 'love-animation';
+                love.textContent = '💖';
+                love.style.left = Math.random() * 100 + '%';
+                love.style.top = Math.random() * 100 + '%';
+                document.body.appendChild(love);
+                setTimeout(() => love.remove(), 2000);
+            }
+
+            // Tampilkan overlay gambar spesial
+            showSpecialImage();
+        }
+
+        function showSpecialImage() {
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+
+            const link = document.createElement('a');
+            link.href = 'https://ibb.co.com/8DzwgzLk';
+            link.target = '_blank';
+
+            const img = document.createElement('img');
+            img.src = 'https://i.ibb.co.com/kg3T23sZ/Screenshot-2026-02-13-220415.png';
+            img.alt = 'Special Moment';
+
+            link.appendChild(img);
+            overlay.appendChild(link);
+            document.body.appendChild(overlay);
+
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.remove();
+                }
+            });
+        }
+
+        // Trigger audio pada klik pertama di mana saja
+        document.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+    </script>
 </body>
 </html>
